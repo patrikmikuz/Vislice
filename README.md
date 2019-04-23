@@ -5,3 +5,5 @@ Testni repozitorij za UVP 2019
 Še nekaj bom dodal.
 
 01234
+43210
+

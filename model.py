@@ -7,7 +7,7 @@ PORAZ = "X"
 
 class Igra:
     def __init__(self, geslo):
-        self.geslo = geslo
+        self.geslo = geslo.upper()
         self.crke = []
     
     def napacne_crke(self):
@@ -39,9 +39,9 @@ class Igra:
 
     def ugibaj(self, crka):
         crka = crka.upper()
-        if crka in self.crke():
+        if crka in self.crke:
             return PONOVLJENA_CRKA
-        elif crka in self.geslo():
+        elif crka in self.geslo:
             self.crke.append(crka)
             if self.zmaga():
                 return ZMAGA
@@ -53,7 +53,11 @@ class Igra:
         else:
             return NAPACNA_CRKA
 
-
-igra = Igra("NEKAJ")
-igra.crke = ["A","L","V","N"]
-print(igra.ugibaj("K"))
+with open("Vislice/besedilo.txt") as f:
+    bazen_besed = [beseda.strip() for beseda in f.readlines()]
+    
+print(bazen_besed[0])
+print(bazen_besed[-1])
+# igra = Igra("NEKAJ")
+# igra.crke = ["A","L","V","N"]
+# print(igra.ugibaj("E"), igra.pravilni_del_gesla())

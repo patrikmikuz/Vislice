@@ -1,3 +1,5 @@
+import random
+
 STEVILO_DOVOLJENIH_NAPAK = 10
 PRAVILNA_CRKA = "+"
 PONOVLJENA_CRKA = "o"
@@ -55,9 +57,9 @@ class Igra:
 
 with open("Vislice/besedilo.txt") as f:
     bazen_besed = [beseda.strip() for beseda in f.readlines()]
+
+def nova_igra():
+    nova = Igra(random.choice(bazen_besed))
+    return nova
     
-print(bazen_besed[0])
-print(bazen_besed[-1])
-# igra = Igra("NEKAJ")
-# igra.crke = ["A","L","V","N"]
-# print(igra.ugibaj("E"), igra.pravilni_del_gesla())
+print(nova_igra())

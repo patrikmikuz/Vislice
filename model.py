@@ -18,7 +18,42 @@ class Igra:
 
     def stevilo_napak(self):
         return len(self.napacne_crke())
+
+    def zmaga(self):
+        return all(c in self.crke for c in self.geslo)
+    
+    def poraz(self):
+        return self.stevilo_napak() >= STEVILO_DOVOLJENIH_NAPAK
         
-igra = Igra("nekaj")
-igra.crke = ["a","l","v","n"]
-print(igra.napacne_crke(), igra.pravilne_crke(), igra.stevilo_napak())
+    def pravilni_del_gesla(self):
+        novi = ""
+        for c in self.geslo:
+            if c in self.crke:
+                novi += c
+            else:
+                novi += "_"
+        return novi
+
+    def nepravilni_ugibi(self):
+        return " ".join(c for c in self.crke if c not in self.geslo)
+
+    def ugibaj(self, crka):
+        crka = crka.upper()
+        if crka in self.crke():
+            return PONOVLJENA_CRKA
+        elif crka in self.geslo():
+            self.crke.append(crka)
+            if self.zmaga():
+                return ZMAGA
+            else:
+                return PRAVILNA_CRKA
+        self.crke.append(crka)
+        if self.poraz():
+            return PORAZ
+        else:
+            return NAPACNA_CRKA
+
+
+igra = Igra("NEKAJ")
+igra.crke = ["A","L","V","N"]
+print(igra.ugibaj("K"))
